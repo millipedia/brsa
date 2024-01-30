@@ -14,6 +14,9 @@ namespace ProcessWire;
 
 echo '<div class="shop_meta_item shop_town_county">';
 
+    echo '<a href="/by-region/">All Regions</a>';
+    echo ' / ';
+
     echo '<a href="' . $page->parent->url . '">' . $page->parent->title . '</a>';
     echo ' / ';
 

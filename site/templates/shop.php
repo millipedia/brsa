@@ -279,8 +279,6 @@ namespace ProcessWire;
                 }
             }
 
-            bd(count($locations));
-
             if (count($locations)) {
 
 

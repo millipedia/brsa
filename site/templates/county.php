@@ -12,6 +12,15 @@ namespace ProcessWire;
 <div id="millco_main">
     <?php
 
+
+echo '<div class="shop_meta_item shop_town_county mb-1">';
+
+    echo '<a href="/by-region/">All Regions</a>';
+    echo ' / ';
+
+    echo '<a href="' . $page->url . '">' . $page->title . '</a>';
+echo '</div>';
+
     echo '<div class="town_tags">';
 
             foreach($page->children() as $town){
