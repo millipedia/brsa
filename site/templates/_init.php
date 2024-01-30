@@ -309,7 +309,7 @@ function cover($shop, $cover_tick = 0, $cover_type = "all", $heading = '')
     // endarkening colours to hit accessibility. Should chat with Andy.
 
     if ($heading == 'h1') {
-        $cover .= '<h1 class="cover_title" style="background-color: hsl(' . $hue . ', 57%, 31%) !important;">' . html_entity_decode($shop->title) . '</h1>';
+        $cover .= '<div class="cover_title" style="background-color: hsl(' . $hue . ', 57%, 31%) !important;"><h1 style="margin:0;padding:0;font-size:inherit;color:currentColor;font-weight:normal;">' . html_entity_decode($shop->title) . '</h1></div>';
     } else {
         $cover .= '<div class="cover_title" style="background-color: hsl(' . $hue . ', 57%, 31%) !important;">' . html_entity_decode($shop->title) . '</div>';
     }
