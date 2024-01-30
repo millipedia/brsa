@@ -1,0 +1,88 @@
+
+/**************************************************************
+ * 
+ * Default theme tweaked to hit AA accessibility colours 
+ *  
+ */
+
+/**************************************************************
+ * Primary variables
+ *
+ * The entire color theme can be adjusted from the @reno 
+ * variables below. 
+ *
+ */
+
+ @reno-text-color: #354b60;
+ @reno-link-color: #df2b5b; // #e83561;
+ @reno-link-hover-color: darken(@reno-link-color, 10%);
+ @reno-dark-background: #1C2836;
+ @reno-muted-background: #f0f3f7;
+ @reno-muted-text-color: #6f7580; // #8d939e; 
+ @reno-muted-text-color-alternate: #577898; // #6c8dae; 
+ @reno-primary-background: #008668; // #3eb998;
+ @reno-secondary-background: #e2e9ef;
+ @reno-success-background: #8bccde;
+ @reno-success-color: @reno-text-color;
+ @reno-warning-background: #FFD15E;
+ @reno-warning-color: @reno-text-color;
+ @reno-danger-background: #bc283d;
+ @reno-danger-color: #fff;
+ @reno-alert-background: #ffd;
+ @reno-alert-color: @reno-text-color;
+ @reno-primary-headline-color: #1C2836;
+ @reno-secondary-headline-color: lighten(@reno-primary-headline-color, 30%);
+ @reno-notes-text-color: @reno-muted-text-color;
+ @reno-notes-background: #ffd;
+ @reno-masthead-background: @reno-dark-background;
+ @reno-masthead-link-color: rgba(255, 255, 255, 0.7); 
+ @reno-masthead-link-hover-color: lightblue;
+ @reno-masthead-link-current-color: #fff;
+ @reno-masthead-icon-color: #6f7580; // #8d939e;
+ @reno-masthead-search-text-color: #8d939e; // #008668
+ @reno-masthead-search-background: transparent;
+ @reno-masthead-search-border-color: lighten(#253447, 10%);
+ @reno-masthead-search-focus-background: lighten(#253447, 5%);
+ @reno-masthead-search-focus-text-color: #fff;
+ @reno-masthead-search-focus-border-color: @reno-masthead-search-focus-background;
+ @reno-masthead-search-icon-color: @reno-masthead-icon-color;
+ @reno-button-text-color: #fff;
+ @reno-button-background: @reno-primary-background;
+ @reno-button-hover-background: @global-link-color;
+ @reno-button-secondary-background: @reno-muted-text-color-alternate; 
+ @reno-dropdown-background: #fff; 
+ @reno-dropdown-color: @reno-text-color;
+ @reno-dropdown-hover-background: #e2e9ef;
+ @reno-dropdown-border-color: #d9e1ea;
+ @reno-dropdown-border: 1px solid @reno-dropdown-border-color;
+ @reno-dropdown-nav-icon-color: #667982; //#97aab4;
+ @reno-page-list-link-color: #7a002b;
+ @reno-page-list-link-open-color: #bb153e;
+ @reno-page-list-icon-color: @reno-link-color;
+ @reno-page-list-link-active-color: @reno-link-hover-color;
+ @reno-page-list-link-hover-color: @reno-link-hover-color;
+ @reno-page-list-action-link-color: #fff;
+ @reno-page-list-action-link-background-color: @reno-link-color; 
+ @reno-page-list-action-link-hover-color: #fff;
+ @reno-page-list-action-link-hover-background-color: @reno-link-hover-color;
+ @reno-inputfield-border: 1px solid #d9e1ea;
+ @reno-inputfield-input-background: #f0f3f7;
+ @reno-inputfield-input-border-color: #b1c3d4 #cbd7e3 #cbd7e3 #cbd7e3;
+ @reno-inputfield-select-background: #f0f3f7;
+ @reno-inputfield-select-border-color: #cbd7e3;
+ @reno-form-radio-checked-background: @reno-muted-text-color-alternate;
+ @reno-offcanvas-text-color: @reno-text-color;
+ @reno-offcanvas-link-color: @reno-text-color;
+ @reno-offcanvas-link-hover-color: @reno-link-color;
+ @reno-offcanvas-link-open-color: @reno-link-color;
+ @reno-offcanvas-background: @reno-secondary-background; 
+ @reno-offcanvas-search-background: #fff;
+ @reno-language-tab-background: transparent;
+ @reno-language-tab-color: @reno-text-color;
+ @reno-language-tab-current-background: #d2dce6;
+ @reno-language-tab-current-color: @reno-primary-headline-color;
+ @reno-language-tab-hover-background: @reno-muted-background;
+ @reno-language-tab-hover-color: @reno-text-color;
+ @reno-language-tab-empty-color: @reno-muted-text-color;
+ @reno-table-header-color: @reno-muted-text-color-alternate;
+ @reno-table-header-current-color: @reno-primary-background;

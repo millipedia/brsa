@@ -1,0 +1,18 @@
+/* DEVELOPMENT */
+
+Creator: millipedia
+URL: https://millipedia.com
+Description: millipedia create award winning resources for organisations in the not-for profit, arts and education sectors; We use technology to make good things for good people.
+Twitter: @millipedia
+Location: Marlow, UK.
+
+/* THANKS */
+
+Big shout out as always to our design partners at Periscope - https://www.periscope.co.uk
+
+
+/* SITE */
+Created: 2021
+Standards: HTML5, CSS3
+Components: Bootstrap (well some bits anyway)
+Software: ProcessWire, VS Code, PHP, Javascript

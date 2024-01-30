@@ -1,0 +1,224 @@
+
+  /* roboto-mono-regular - latin */
+  @font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('/site/assets/fonts/roboto-mono-v12-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('/site/assets/fonts/roboto-mono-v12-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    font-display: swap;
+  }
+  
+  /* roboto-mono-600 - latin */
+  @font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 600;
+    src: local(''),
+         url('/site/assets/fonts/roboto-mono-v12-latin-600.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('/site/assets/fonts/roboto-mono-v12-latin-600.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+         font-display: swap;
+        }
+  
+
+/* monoton-regular - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Monoton';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/site/assets/fonts/monoton-v15-latin-regular.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+         url('/site/assets/fonts/monoton-v15-latin-regular.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+         font-display: swap;
+  }
+  
+html, body{
+    font-family: 'Roboto Mono', 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+    color: var(--dark);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+
+a{
+    text-decoration: underline;
+    color:var(--theme);
+    transition: var(--transition);
+    text-decoration:underline;
+    text-decoration-line: underline;
+}
+
+.link-white{
+    color:white;
+}
+
+.link-no-decoration{
+    text-decoration: none;
+}
+
+a:hover,
+a:focus{
+    color:var(--accent);
+    transition: var(--transition);
+}
+
+blockquote {
+    display: block;
+	font-style: italic;
+	padding: 0 0.5rem;
+	margin: 1rem 3rem;
+    border-left: 6px solid #ccc;
+}
+
+
+caption,
+.caption{
+    display: block;
+    font-size: 0.8rem;
+    text-align: center;
+    background-color: var(--dark);
+    padding:0.4rem;
+    color:white;
+}
+
+
+h1,
+.site_title_link{
+    display: flex;
+    align-items: center;
+    font-weight: var(--strong);
+    text-decoration: none;
+    color:black;
+    font-size:clamp(1.1rem, 2.2vw, 2.8rem);
+}
+
+h2, .h2{
+    font-size: 2.25rem;
+    font-weight: var(--strong);
+    margin-top:0;
+    margin-bottom: 1rem;
+}
+
+h3, .h3{
+    font-size: 1.25rem;
+    font-weight: var(--strong);
+    margin-top:0;
+}
+
+.logo_circle {
+	width: 44px;
+	/* height: 44px; */
+	margin-right: 1rem;
+	display: flex;
+}
+
+.logo_text{
+    font-size:clamp(1.2rem, 2.5vw, 3rem);
+}
+
+.has_lede p:first-of-type{
+    font-weight: var(--strong);
+    font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+ 
+}
+
+.text-condensed{
+    font-family: var(--font-condensed);
+}
+
+.text-70{
+    font-size:0.7rem !important;
+}
+
+.text-80{
+    font-size:0.8rem !important;
+}
+
+.text-90{
+    font-size:0.9rem !important;
+}
+
+.text-100{
+    font-size:1rem;
+}
+
+.text-110{
+    font-size:1.1rem;
+}
+
+.text-120{
+    font-size:1.2rem;
+}
+
+.text-140{
+    font-size:0.8rem;
+}
+
+.text-150{
+    font-size:1.5rem;
+}
+
+.text-160{
+    font-size:1.6rem;
+}
+
+.text-180{
+    font-size:1.8rem;
+}
+
+.text-200{
+    font-size:2rem;
+}
+
+.text-250{
+    font-size:2.5rem;
+}
+
+.text-300{
+    font-size:3rem;
+}
+
+.text-blue{
+    color: var(--blue);
+}
+
+.text-centre,
+.text-center{
+    text-align: center;
+}
+
+.text-decoration-no{
+    text-decoration: none;
+}
+
+.text-measure {
+	max-width: 620px;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-smaller{
+    font-size:var(--smaller) !important;
+} 
+
+.text-strong{
+    font-weight:var(--strong);
+} 
+
+.text-upper{
+    text-transform: uppercase;
+}
+
+.text-white{
+    color: white !important;
+}
+
+.max-copy-length{
+    max-width: 680px;
+}

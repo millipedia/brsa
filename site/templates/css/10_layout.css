@@ -1,0 +1,199 @@
+body{
+    
+    background:url('/site/assets/images/record_spines_l.webp');
+    background-size: 100% auto;
+    background-color: var(--theme);
+
+
+}
+
+
+.container{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+header{
+    background-color: var(--dark);
+    height: 100px;
+    display: flex;
+    padding: 1rem;
+}
+
+.header_logo,
+.header_search{
+    display: flex;
+}
+
+.header_search{
+    flex:1;
+    justify-content: end;
+    align-items: center;
+    padding-right: 1rem;
+
+}
+
+.logo{
+    height:80px;
+    width: auto;
+}
+
+.logo svg{
+    height:100%;
+    width:auto;
+}
+
+.logo_fill {
+    fill: var(--theme);
+}
+
+main{
+    background-color: white;
+    padding:1rem;
+}
+
+
+@media(min-width: 1200px ){
+    main{
+        margin:2rem 0.5rem 1rem 0.5rem;
+        padding:3rem;
+
+    }
+}
+
+
+.millco_main,
+#content_main{
+    width:100%;
+}
+
+@media(min-width: 768px ){
+
+    main{
+        padding:2rem;
+
+    }
+
+    .millco_layout{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap:1rem;
+    }
+
+    /* old safari doesn't support flexbox gap */
+    @supports (-webkit-min-device-pixel-ratio:0) and (not(translate: none)){
+
+        .millco_layout{
+            display: grid;
+            grid-template-columns: 16% 16% 66%;
+            width: 100%;
+            grid-gap:1rem;
+            gap:1rem;
+        }
+    
+    }
+
+    .millco_col_1{
+        flex:1;
+    }
+    
+    .millco_col_2,
+    .millco_main{
+        display: block;
+        flex:4;
+    }
+
+    .millco_col_3,
+    .millco_aside{
+        flex:1;
+    }
+    
+
+}
+
+.nav-container {
+	position: fixed;
+	top: -3000px;
+	width: 100vw;
+	max-height: 100vh;
+    min-height: 100vh;
+    background-color: var(--grey-very-light);
+	transition: var(--transition);
+	display: flex;
+	flex-direction: column;
+    z-index: 2;
+}
+
+.toggled .nav-container{
+    top:0;
+    transition: var(--transition);
+}
+
+.sticky_top{
+    position: sticky;
+    top:0;
+}
+
+
+main{
+    flex: 5;
+}
+
+aside {
+	flex: 3;
+	padding: 1rem 1rem 1rem 0;
+}
+
+.logo-container{
+    width:60px;
+    height:auto;
+    position: absolute;
+    top:10px;
+    left:10px;
+}
+
+@media(min-width: 768px ){
+
+    .logo-container{
+        margin-top:-10px;
+        position: relative; /* fallback for Old Safari */
+        position: sticky;
+        top:-10px;
+        width:auto;
+    }
+}
+
+
+  .supporters{
+    display: flex;
+  }
+  
+  .supporter{
+    display:flex;
+    margin-right:1.5rem;
+    z-index: 1;
+    max-height: 80px;
+    align-items: center;
+  }
+  
+  .supporter img{
+    min-height: 50px;
+    height:100%;
+    width:auto;
+    
+  }
+
+.footer_nav{
+    padding:1rem 0.5rem;
+    font-size: 0.875rem;
+    font-weight: var(--strong)
+}
+
+.footer_link{
+    text-decoration: none;
+    display: inline-flex;
+    gap:0.5rem;
+}

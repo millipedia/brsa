@@ -1,0 +1,37 @@
+<?php
+
+namespace ProcessWire;
+
+/**
+ * County
+ * 
+ */
+
+?>
+
+<div id="millco_main">
+    <?php
+
+    echo '<div class="town_tags">';
+
+            foreach($page->children() as $town){
+
+                echo '<a href="' . $town->url .'" class="tag">' . $town->title .'</a>';
+            }
+
+            echo '</div>';
+
+
+    $shops_in_county = $pages->find("county={$page->name},sort=title");
+
+    echo '<h3 class="pb-0 mb-0">Shops</h3>';
+
+    echo shop_in_list($shops_in_county, 4, 'county');
+    
+    if($page->content){
+        echo '<div class="county_content text-measure">' . $page->content . '</div>';
+    }
+
+    ?>
+
+</div>

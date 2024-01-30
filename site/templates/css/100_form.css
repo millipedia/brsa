@@ -1,0 +1,106 @@
+
+.ys_form_container{
+    padding:0 1rem 2rem 1rem;
+    color: var(--primary1);
+}
+
+@media(min-width: 992px ){
+  .ys_form_container{
+    padding: 1rem 2rem;
+  }
+}
+
+
+#ys_image{
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+.ys_upload{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    max-width:320px;
+}
+
+.yt_upload_image{
+    width:60px;
+    height:auto;
+}
+
+.yt_upload_image svg{
+    max-width: 100%;
+    height:auto;
+}
+
+.ys_label{
+    display: block;
+    font-size: 1.125rem;
+    font-weight: var(--strong);
+    line-height: 1.5;
+    margin-top:1rem;
+}
+
+.ys_cat{
+    margin:0.5rem;
+}
+.ys_cat_label{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ys_checkbox_title{
+    flex:1;
+    display: flex;
+}
+
+.ys_checkbox_title_text{
+    display: flex;
+    align-items: center;
+    font-size:1.125rem;
+    padding-left:0.5rem;
+}
+
+/* Hide the browser's default checkbox */
+.ys_cat input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    height: 32px;
+    width: 32px;
+    border:4px solid var(--secondary1);
+    border-radius: 4px;
+    background-color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .checkmark_check{
+    display: none;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .ys_cat:hover input ~ .checkmark,
+  .ys_checkbox:focus ~ .checkmark {
+    background-color: var(--primary2);
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .ys_cat input:checked ~ .checkmark .checkmark_check{
+    display: block;
+  }
+
+  .ys_image:focus ~ .yt_upload_text{
+    text-decoration: underline;
+  }
