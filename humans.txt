@@ -3,16 +3,18 @@
 Creator: millipedia
 URL: https://millipedia.com
 Description: millipedia create award winning resources for organisations in the not-for profit, arts and education sectors; We use technology to make good things for good people.
-Twitter: @millipedia
+Mastodon: https://mastodon.social/@millipedia
 Location: Marlow, UK.
 
 /* THANKS */
 
 Big shout out as always to our design partners at Periscope - https://www.periscope.co.uk
 
+The BRSA wouldn't exist without Lèon who spent 10 years getting it started.
+
+And props to Simon Cope for his invaluable assitance in editting and nit picking (in a good way!).
 
 /* SITE */
-Created: 2021
+Created: 2023
 Standards: HTML5, CSS3
-Components: Bootstrap (well some bits anyway)
 Software: ProcessWire, VS Code, PHP, Javascript
