@@ -180,12 +180,10 @@ namespace ProcessWire;
 
             <h2>Details</h2>
 
-
             <?php
 
             $address_markup='';  
             $address_count=0;
-            
 
             if($page->addresses){
 
@@ -264,8 +262,29 @@ namespace ProcessWire;
      
             // TODO  - this should show all the addresses field entries.
 
-            if ($page->location) {
+            $locations=array();
 
+            if ($page->location) {
+                $locations[]=$page->location;
+            }
+
+            if($page->addresses->count){
+
+                foreach($page->addresses as $address){
+
+                    if($address->location){
+                        $locations[]=$address->location;
+                    }
+
+                }
+            }
+
+            bd(count($locations));
+
+            if (count($locations)) {
+
+
+            
                 echo '<div id="map" class="shop_map">... loading ... </div>';
 
             ?>
@@ -296,9 +315,9 @@ namespace ProcessWire;
 
                         map.addLayer(osm);
 
-                        map.setView([<?=$page->location?>], 11);
+                        map.setView([<?=$locations[0]?>], 11);
 
-                        var marker = L.marker([<?=$page->location?>]).setIcon(L.divIcon({
+                        var marker = L.marker([<?=$locations[0]?>]).setIcon(L.divIcon({
                             className: 'brsa_map_pin'
                         })).addTo(map);
 
