@@ -2,7 +2,7 @@
 
 This is the code for the new (well it's new at the moment) British Record Shop Archive.
 
-The BRSA is a volunteer effort to chronical the UK's record shops.
+The BRSA is a volunteer effort to chronicle the UK's record shops.
 
 It is very much a work in progress and we're always on the look out for help.
 
