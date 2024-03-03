@@ -31,7 +31,7 @@ echo '</div>';
             echo '</div>';
 
 
-    $shops_in_county = $pages->find("county={$page->name},sort=title");
+    $shops_in_county = $pages->find("addresses.county={$page},sort=title");
 
     echo '<h3 class="pb-0 mb-0">Shops</h3>';
 

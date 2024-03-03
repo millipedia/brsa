@@ -23,7 +23,7 @@ echo '<div class="shop_meta_item shop_town_county">';
     echo '<a href="' . $page->url . '">' . $page->title . '</a>';
 echo '</div>';
 
-    $shops_in_county = $pages->find("town|addresses.town={$page->name}");
+    $shops_in_county = $pages->find("addresses.town={$page}");
 
     // $shops_in_county->add($pages->find("addresses.town={$page->name}"));
 
