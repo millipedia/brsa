@@ -46,4 +46,3 @@
 
             echo '<div><a href="' . $fp->editUrl() .'">' . $fp->title .'</a></div>';
         }
-?>
