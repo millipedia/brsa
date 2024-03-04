@@ -7,7 +7,7 @@
  */
 
  // missing towns.
- $fixins=$pages->find("template=shop,town=''");
+ $fixins=$pages->find("template=shop,addresses.town=''");
 
 ?>
 <p>Good effort team. But we have <strong><?=$fixins->count()?></strong> shops with no <em>Town</em> set. That might take a bit longer.</p>
@@ -36,7 +36,7 @@
 		// $result = $query->fetchAll();
 
 
-		$fixins=$pages->find("template=shop,town='',need_more_info!=1,limit=20");
+		$fixins=$pages->find("template=shop,addresses.town='',need_more_info!=1,limit=20");
 
 
         foreach($fixins as $fp){
