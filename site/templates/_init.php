@@ -119,8 +119,7 @@ function nav_render($children, $level = 1, $max_level = 3)
     $current_page_parent_id = $current_page->parent->id;
     // Return all parents, excluding the homepage
     $parents = $current_page->parents("template!=home");
-    bd($parents);
-
+   
     foreach ($children as $page) {
 
         $classes = " ";
@@ -224,7 +223,9 @@ function source_set($image, $caption = '', $alt = '', $width = 1440, $height = '
             $alt = $image->title;
         }
 
-        if ($image->strap) {
+        if ($image->image_caption) {
+            $caption = $image->image_caption;
+        }else if ($image->strap) {
             $caption = $image->strap;
         }
 
@@ -320,15 +321,35 @@ function cover($shop, $cover_tick = 0, $cover_type = "all", $heading = '')
     // don't show the county if we're on a county page.
     if ($cover_type == 'all' || $cover_type == 'town') {
 
-        if ($shop->county) {
-            $cover .= '<div class="card_meta card_meta_county">' . $shop->county->title . '</div>';
+        if($shop->template=='shop'){
+            if ($shop->get_county()) {
+
+                $county=$shop->get_county();
+    
+                $cover .= '<div class="card_meta card_meta_county">' . $county->title . '</div>';
+            // }else{
+    
+            //     if($shop->addresses && $shop->addresses->count){
+    
+            //         if($shop->addresses->first()->county){
+            //             $cover .= '<div class="card_meta card_meta_county">' . $shop->addresses->first()->county->title . '</div>';
+            //         }
+    
+    
+            //     }
+    
+            } 
         }
+      
     }
     // don't show the town if we're on a town.
     if ($cover_type == 'all' || $cover_type == 'county') {
-        if ($shop->town) {
-            $cover .= '<div class="card_meta card_meta_town">' . $shop->town->title . '</div>';
+
+        if($shop->template=='shop'){
+        if ($shop->get_town()) {
+            $cover .= '<div class="card_meta card_meta_town">' . $shop->get_town()->title . '</div>';
         }
+    }
     }
 
 

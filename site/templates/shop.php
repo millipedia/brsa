@@ -315,23 +315,38 @@ namespace ProcessWire;
 
                         map.setView([<?=$locations[0]?>], 11);
 
-                        var marker = L.marker([<?=$locations[0]?>]).setIcon(L.divIcon({
-                            className: 'brsa_map_pin'
-                        })).addTo(map);
-
                         <?php
+
+                        $tick=1;
+                        foreach($page->addresses as $address){
+
+                            if($address->location){
+
+                                echo 'var marker_' . $tick .' = L.marker([' . $address->location .']).setIcon(L.divIcon({className: \'brsa_map_pin\'})).addTo(map);' . PHP_EOL;
+
+                            }
+
                             $popup_content='<div class="text-centre">';
                             $popup_content.='<div class="pu_title">' . $page->title .'</div>';
                             
-                            if($page->town){
-                                $popup_content.='<div class="pu_town">' . $page->town->title . '</div>';
+                            if($address->town){
+                                $popup_content.='<div class="pu_town">' . $address->town->title . '</div>';
                             }
 
                             $popup_content.='</div>';
+
+
+                            echo ' marker_' .$tick .'.bindPopup(\''. $popup_content .'\');' . PHP_EOL;
+
+                            $tick ++;
+    
+                        }
+
+
                            
                         ?>
 
-                        marker.bindPopup('<?=$popup_content?>').openPopup();
+                       
 
                     });
                 </script>
@@ -416,18 +431,21 @@ namespace ProcessWire;
               
                 echo '<div class="pt-2">';
 
-                if ($next_county = $page->next("county=$page->county")) {
-                    if ($next_county->id) {
-                        echo '<div class="shop_meta_item shop_prev_next">Next in ' . $page->county->title . ': ';
-                        echo '<a href="' . $next_county->url . '">' . $next_county->title . '</a>';
+                $county=$page->get_county();
+
+
+                if ($next_in_county = $page->next("addresses.county=$county")) {
+                    if ($next_in_county->id) {
+                        echo '<div class="shop_meta_item shop_prev_next">Next in ' . $county->title . ': ';
+                        echo '<a href="' . $next_in_county->url . '">' . $next_in_county->title . '</a>';
                         echo '</div>';
                     }
                 }
 
-                if ($prev_county = $page->prev("county=$page->county")) {
-                    if ($prev_county->id) {
-                        echo '<div class="shop_meta_item shop_prev_next">Prev in ' . $page->county->title . ': ';
-                        echo '<a href="' . $prev_county->url . '">' . $prev_county->title . '</a>';
+                if ($prev_in_county = $page->prev("county=$county")) {
+                    if ($prev_in_county->id) {
+                        echo '<div class="shop_meta_item shop_prev_next">Prev in ' . $county->title . ': ';
+                        echo '<a href="' . $prev_in_county->url . '">' . $prev_in_county->title . '</a>';
                         echo '</div>';
                     }
                 }

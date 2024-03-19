@@ -79,14 +79,73 @@ $this->addHookBefore('Pages::save', function (HookEvent $event) {
 
 		$page->content=$content;
 
-		// Populate back arguments (if you have modified them)
-		$event->arguments(0, $page);
-		$event->arguments(1, $options);
+		
 	}
 
+	// Set county fields to the parent of the town.s
+	
+	if($page->addresses){
+
+		foreach($page->addresses as $address){
+
+			if($address->town){
+				$address->setAndSave('county', $address->town->parent);
+
+			}
+
+		}
+
+	}
+
+	// Populate back arguments (if you have modified them)
+	$event->arguments(0, $page);
+	$event->arguments(1, $options);
 
 
 });
+
+
+// $this->addHookBefore('FieldtypeRepeater::savePageField', function(HookEvent $event) {
+// 	// Get the object the event occurred on, if needed
+// 	$FieldtypeRepeater = $event->object;
+
+// 	bd("in hook for repeater ser");
+
+// 	// Get values of arguments sent to hook (and optionally modify them)
+// 	$page = $event->arguments(0);
+
+
+
+
+  
+
+// 	$field = $event->arguments(1);
+// 	bd($field);
+// 	if($field){
+// 		foreach($page->addresses as $address){
+
+
+// 			if(!$address->county){
+
+// 					if($address->town){
+// 						$address->county=$address->town->parent;
+// 						// $address->savePageField(Page $page, Field $field);
+// 						// $address->county->savePageField();
+
+// 					}
+
+// 				}
+
+
+
+// 		}
+
+// 	}
+  
+// 	// Populate back arguments (if you have modified them)
+// 	$event->arguments(0, $page);
+// 	$event->arguments(1, $field);
+//   });
 
 $wire->addHookAfter('InputfieldPage::getSelectablePages', function($event) {
 	if($event->object->hasField->name == 'town') {
@@ -126,8 +185,8 @@ $wire->addHook('/typeahead/', function($event) {
 
 				$malue=$smatch->title;
 
-				if($smatch->county){
-					$malue.= ' - ' . $smatch->county->title;
+				if($smatch->get_county()){
+					$malue.= ' - ' . $smatch->get_county()->title;
 				}
 				$response.='<option value="' . $malue .'" data-shopurl="' . $smatch->url . '">' . $malue . '</option>';
 			}
