@@ -54,7 +54,7 @@ wire()->addHookAfter('Pages::saveReady', null, 'skeleton_cache');
 
 
 
-// before we save a hash page lets sort some fields.
+// before we save a shop page lets sort some fields.
 $this->addHookBefore('Pages::save', function (HookEvent $event) {
 
 	// Get the object the event occurred on, if needed
@@ -69,7 +69,7 @@ $this->addHookBefore('Pages::save', function (HookEvent $event) {
 
 	if ($page->template != 'shop') return;
 
-	/* Your code here, perhaps modifying arguments */
+	/* Replace some junk from Wix */
 	if($page->content){
 		
 		$content=$page->content;
@@ -78,11 +78,12 @@ $this->addHookBefore('Pages::save', function (HookEvent $event) {
 		$content=str_replace('img alt="Picture"','img alt=""',$content);
 
 		$page->content=$content;
-
 		
 	}
 
-	// Set county fields to the parent of the town.s
+	// We now set county fields to the parent of the town.
+	// I guess this isn't third normal form but probably
+	// more efficient for searching ... maybe.
 	
 	if($page->addresses){
 
@@ -104,62 +105,6 @@ $this->addHookBefore('Pages::save', function (HookEvent $event) {
 
 });
 
-
-// $this->addHookBefore('FieldtypeRepeater::savePageField', function(HookEvent $event) {
-// 	// Get the object the event occurred on, if needed
-// 	$FieldtypeRepeater = $event->object;
-
-// 	bd("in hook for repeater ser");
-
-// 	// Get values of arguments sent to hook (and optionally modify them)
-// 	$page = $event->arguments(0);
-
-
-
-
-  
-
-// 	$field = $event->arguments(1);
-// 	bd($field);
-// 	if($field){
-// 		foreach($page->addresses as $address){
-
-
-// 			if(!$address->county){
-
-// 					if($address->town){
-// 						$address->county=$address->town->parent;
-// 						// $address->savePageField(Page $page, Field $field);
-// 						// $address->county->savePageField();
-
-// 					}
-
-// 				}
-
-
-
-// 		}
-
-// 	}
-  
-// 	// Populate back arguments (if you have modified them)
-// 	$event->arguments(0, $page);
-// 	$event->arguments(1, $field);
-//   });
-
-$wire->addHookAfter('InputfieldPage::getSelectablePages', function($event) {
-	if($event->object->hasField->name == 'town') {
-
-		// TODO. Need to change this doo dah.
-
-		// bd("boops");
-		// bd($event->object);
-		// $currentPage = $event->arguments('page');
-		// $event->return = $currentPage->children();
-	
-	  //$event->return = $event->pages->find('your selector here');
-	}
-  });
 
 /**
  * Search shops for typeahead field.
@@ -195,8 +140,6 @@ $wire->addHook('/typeahead/', function($event) {
 		}
 
 	}
-
-
 
 	return $response;
 

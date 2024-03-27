@@ -62,7 +62,7 @@ function search_results_list($title,$matches){
 
 
 			// lets do a separate search for regions first
-			$selector = "template=county,title|content~*=$q, limit=20";
+			$selector = "template=county,title~*=$q, limit=20";
 			if($user->isLoggedin()) $selector .= ", has_parent!=2"; 
 			$matches = $pages->find($selector); 
 
@@ -72,6 +72,18 @@ function search_results_list($title,$matches){
 				$title = "Found $matches->count regions matching your query: <em>$q</em>";
 				$results_markup.=search_results_list($title,$matches);
 
+			}
+
+			// hell and towns
+			$selector = "template=town,title~*=$q, limit=20";
+			if($user->isLoggedin()) $selector .= ", has_parent!=2"; 
+			$matches = $pages->find($selector); 
+
+			// did we find any matches?
+			if($matches->count) {
+
+				$title = "Found $matches->count towns matching your query: <em>$q</em>";
+				$results_markup.=search_results_list($title,$matches);
 
 			}
 
