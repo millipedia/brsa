@@ -315,16 +315,18 @@ namespace ProcessWire;
 
                         map.setView([<?=$locations[0]?>], 11);
 
+						var marker_layer = new L.featureGroup();
+
                         <?php
 
                         $tick=1;
                         foreach($page->addresses as $address){
 
-                            if($address->location){
+                            if($address->location && $address->location!==''){
 
-                                echo 'var marker_' . $tick .' = L.marker([' . $address->location .']).setIcon(L.divIcon({className: \'brsa_map_pin\'})).addTo(map);' . PHP_EOL;
+                                echo 'var marker_' . $tick .' = L.marker([' . $address->location .']).setIcon(L.divIcon({className: \'brsa_map_pin\'})).addTo(marker_layer);' . PHP_EOL;
 
-                            }
+
 
                             $popup_content='<div class="text-centre">';
                             $popup_content.='<div class="pu_title">' . $page->title .'</div>';
@@ -338,6 +340,8 @@ namespace ProcessWire;
 
                             echo ' marker_' .$tick .'.bindPopup(\''. $popup_content .'\');' . PHP_EOL;
 
+						}
+
                             $tick ++;
     
                         }
@@ -345,6 +349,8 @@ namespace ProcessWire;
 
                            
                         ?>
+							marker_layer.addTo(map);
+							map.fitBounds(marker_layer.getBounds());
 
                        
 
