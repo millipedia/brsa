@@ -280,8 +280,6 @@ namespace ProcessWire;
             }
 
             if (count($locations)) {
-
-
             
                 echo '<div id="map" class="shop_map">... loading ... </div>';
 
@@ -439,18 +437,27 @@ namespace ProcessWire;
 
                 $county=$page->get_county();
 
+				bd($county);
 
                 if ($next_in_county = $page->next("addresses.county=$county")) {
                     if ($next_in_county->id) {
-                        echo '<div class="shop_meta_item shop_prev_next">Next in ' . $county->title . ': ';
+                        echo '<div class="shop_meta_item shop_prev_next">';
+						
+						if($county){
+							echo 'Next in ' . $county->title . ': ';
+						}
+						
                         echo '<a href="' . $next_in_county->url . '">' . $next_in_county->title . '</a>';
                         echo '</div>';
                     }
                 }
 
-                if ($prev_in_county = $page->prev("county=$county")) {
+                if ($prev_in_county = $page->prev("addresses.county=$county")) {
                     if ($prev_in_county->id) {
-                        echo '<div class="shop_meta_item shop_prev_next">Prev in ' . $county->title . ': ';
+						echo '<div class="shop_meta_item shop_prev_next">';
+						if($county){
+							echo 'Prev in ' . $county->title . ': ';
+						}
                         echo '<a href="' . $prev_in_county->url . '">' . $prev_in_county->title . '</a>';
                         echo '</div>';
                     }
