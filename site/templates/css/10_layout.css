@@ -192,8 +192,17 @@ aside {
     font-weight: var(--strong)
 }
 
+.credits{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin:auto
+}
+
 .footer_link{
     text-decoration: none;
     display: inline-flex;
+	align-items: center;
     gap:0.5rem;
 }
