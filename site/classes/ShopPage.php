@@ -15,12 +15,14 @@ class ShopPage extends Page
 
         $county=0;
 
-        if($this->county && $this->county->id){
-            $county=$this->county;
-
-        }else if($this->addresses && $this->addresses->count){
+ 	if($this->addresses && $this->addresses->count){
             $county=$this->addresses->first()->county;
-        }
+        }else{
+			if($this->county && $this->county->id){
+				$county=$this->county;
+	
+			}
+		}
 
 
         return $county;
