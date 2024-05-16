@@ -276,23 +276,6 @@ hx-config="{'inlineScriptNonce' : '<?= $nonce ?>'}" hx-trigger="input[checkselec
 
     </div><!-- close #app -->
 
-    <?php
-
-    // Edit link to admin for howard.
-    // which is in fact really useful.
-    if ($user->isLoggedin() && $page->editable()) {
-        echo '<div class="edit_links">';
-        echo "<a class='edit-link' href='$page->editUrl'> > Edit this page</a>";
-
-        echo "<a class='edit-link' href='/bradmin/shops'> > Shop List</a>";
-
-        echo "<a class='edit-link' href='/bradmin/'> > Dashboard</a>";
-
-        echo '</div>';
-    }
-
-    ?>
-
     <script src="/site/assets/vendor/htmx.min.js"></script>
 
     <script async defer src="https://cabin.millipedia.net/hello.js"></script>
