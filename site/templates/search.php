@@ -86,6 +86,8 @@ function search_results_list($title,$matches){
 				$results_markup.=search_results_list($title,$matches);
 
 			}
+
+
 			
 			// this is the default search query
 			// let's do shops separately now.

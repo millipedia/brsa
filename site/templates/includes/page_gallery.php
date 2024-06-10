@@ -35,7 +35,17 @@ if($page->featured_image){
 
   echo '<div class="lf_slide_meta">';
     echo '<div class="slm_title">' . $pi_thumb->description  .'</div>';
-    echo '<div class="slm_caption">' . $pi_thumb->strap .'</div>';
+
+$caption='';
+    if ($pi_thumb->image_caption) {
+
+      $caption = $pi_thumb->image_caption;
+  }else if ($pi_thumb->strap) {
+      $caption = $pi_thumb->strap;
+  }
+  $caption=$sanitizer->entities($caption);
+
+    echo '<div class="slm_caption">' . $caption .'</div>';
   echo '</div>';
 
   echo '</a>';
@@ -63,7 +73,19 @@ foreach($page->images as $pi){
 
           echo '<div class="lf_slide_meta">';
             echo '<div class="slm_title">' . $pi_thumb->description  .'</div>';
-            echo '<div class="slm_caption">' . $pi_thumb->strap .'</div>';
+
+            $caption=' - ';
+    if ($pi_thumb->image_caption) {
+
+      $caption = $pi_thumb->image_caption;
+
+    }else if ($pi_thumb->strap) {
+        $caption = $pi_thumb->strap;
+    }
+  
+    $caption=$sanitizer->text($caption);
+
+            echo '<div class="slm_caption">' . $caption .'</div>';
           echo '</div>';
 
       echo '</a>';
