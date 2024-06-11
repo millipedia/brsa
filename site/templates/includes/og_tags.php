@@ -44,6 +44,8 @@ if($site_url_canonical==''){
     // Truncate string to closest sentence within 165 characters
     $desc = $sanitizer->truncate($desc, 165, 'sentence');
 
+	$desc = str_replace('"','',$desc);
+
     // NB. ProCache removes the quuotes from the following metatags
     // so they should NOT end with a slash for closing the tag. Who knew?
     ?>
