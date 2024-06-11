@@ -91,7 +91,7 @@ function search_results_list($title,$matches){
 			
 			// this is the default search query
 			// let's do shops separately now.
-			$selector = "template=shop,title|comments|content~*=$q, limit=80";
+			$selector = "template=shop,title|comments|old_comments|content~*=$q, limit=80";
 			
 			// this is me tinkering 
 			//	$selector = "title|content*+=$q, limit=50"; 

@@ -62,6 +62,11 @@ namespace ProcessWire;
                     
                     echo '<h2 class="comments_header">Comments</h2>';
 
+					if($page->old_comments){
+						echo '<div class="old_comments_container">' . $page->old_comments . '</div>';
+					}
+
+
                     echo '<div class="comments_container">';
 
                     // comments list 
