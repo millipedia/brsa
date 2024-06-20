@@ -229,3 +229,9 @@ ul.az li a {
 ul.az li a:hover {
 	background-color: #ccc;
 }
+
+/* next / previous */
+
+.brsa_next_previous{
+	margin-top: var(--gap);
+}

@@ -484,7 +484,7 @@ namespace ProcessWire;
         include('includes/content_extras.php');
         ?>
 
-        <div class="brsa_next_previoous">
+        <div class="brsa_next_previous">
 
             <div class="d-flex w-100">
 
