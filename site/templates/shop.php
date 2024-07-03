@@ -83,12 +83,7 @@ namespace ProcessWire;
                     }
                     
                     echo '<div id="comments_list">' . $comments_marked_up . '</div>';
-                    
-                                       // echo $page->comments->render();
-                    // include ('comment_form.php');
-                    
-                    // echo '</div>';
-                    
+                   
 
                     echo '</div>';
 
@@ -101,7 +96,6 @@ namespace ProcessWire;
                     // add a div with class="cf-turnstil" to the form - this gets replaced with a token (after a successful challenge)
                     $cft_tag = '<div id="cft_field" class="cf-turnstile"></div>';
 
-
                     $cft_tag .='<div class="discoclaimer">We ask for your email address in case we need to contact you about your submission. Your email address is never published.</div>';
 
                     $comments_form = str_replace("</form>", $cft_tag . "</form>", $comments_form);
@@ -110,10 +104,9 @@ namespace ProcessWire;
                     $comments_form_slash_rot = addslashes($comments_form_rot);
 
                     // if we have feedback then show the form 
-
                     if ($input->get('comment_success')) {
                         echo '<div id="cf_clear">' . $comments_form . '</div>';
-                    } else {
+                    } else { // show our add comment button.
                         echo '<div id="cf_clear"></div>';
                         echo '<button id="show_comment_form" class="butt">Add a comment</button>';
                     }
@@ -132,9 +125,7 @@ namespace ProcessWire;
                             return message.replace(/[a-z]/gi, letter => cipher[originalAlpha.indexOf(letter)])
                         }
 
-
                         // and to unslash it. Surely this should be native?
-
                         // stripslashes
                         function stripslashes(str) {
                             return str.replace(/\\'/g, '\'').replace(/\"/g, '"').replace(/\\\\/g, '\\').replace(/\\0/g, '\0');
@@ -164,6 +155,7 @@ namespace ProcessWire;
                                         },
                                     });
 
+									// hide the add comment button.
                                     show_comment_form.style.display='none';
 
 
