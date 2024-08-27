@@ -78,12 +78,23 @@ required/>
         </form>
     </div>
     <div class="grid grid_2">
-        <div class="col has_lede">
+        <div class="col ">
 
                 <?php
 
-                echo $page->content;
-                
+				echo '<div class="has_lede">';
+	                echo $page->content;
+				echo '</div>';
+    
+				if($page->sub_content){
+
+					$pp_content=$page->sub_content;
+
+					include('includes/promo_panel.php');
+				}
+
+
+
                 $shops=$pages->get('/shops/');
                 if ($shops->children()->count) {
                     echo '<p>We currently have <strong style="font-size:1.4rem;">' . $shops->children()->count .'</strong> shops.</p>';
@@ -103,8 +114,6 @@ required/>
         <div class="col">
 
         <div class="home_spacer"><!-- clear the logo background by magic --></div>
-
-
 
             <nav class="brsa_nav">
 
