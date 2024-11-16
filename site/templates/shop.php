@@ -434,8 +434,6 @@ namespace ProcessWire;
 
                 $county=$page->get_county();
 
-				bd($county);
-
                 if ($next_in_county = $page->next("addresses.county=$county")) {
                     if ($next_in_county->id) {
                         echo '<div class="shop_meta_item shop_prev_next">';
