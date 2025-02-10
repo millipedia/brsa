@@ -45,6 +45,9 @@ function search_results_list($title,$matches){
 
 		// did $q have anything in it?
 		if($q) { 
+
+			$log->save('search-terms', $q ); 
+
 			// Send our sanitized query 'q' variable to the whitelist where it will be
 			// picked up and echoed in the search box by _main.php file. Now we could just use
 			// another variable initialized in _init.php for this, but it's a best practice

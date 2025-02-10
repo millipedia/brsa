@@ -24,11 +24,8 @@ class ShopPage extends Page
 			}
 		}
 
-
         return $county;
     }
-
-
 
     public function get_town(){
 

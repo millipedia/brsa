@@ -1,7 +1,7 @@
 .vscode/
 dump/
+import/
 site/config.php
 site/modules/MillcoUtils
 site/modules/MillcoLocation
-
 .DS_Store

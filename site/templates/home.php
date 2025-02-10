@@ -116,7 +116,7 @@ required/>
         <div class="home_spacer"><!-- clear the logo background by magic --></div>
 
             <nav class="brsa_nav">
-
+            <a href="/map/">Map</a>
             <a href="/sleeve-notes/">Sleeve Notes</a>
             </nav>
 

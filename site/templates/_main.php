@@ -33,7 +33,8 @@ namespace ProcessWire;
         "css/40_components.css",
         "css/50_pages.css",
         "css/100_shops.css",
-        "css/100_form.css"
+        "css/100_form.css",
+		"css/120_map.css"
     );
 
     if ($page->template == 'shop') {
@@ -65,12 +66,14 @@ namespace ProcessWire;
         echo '<script src="/site/assets/vendor/leaflet/leaflet.js?v=193"></script>';
     }
 
-
-    // switched to cabin cos I'm a cheapskate
-    // <!-- load nice, privacy friendly analytics -->
-    // <script src="https://cdn.usefathom.com/script.js" data-site="PAHGMKAX" defer></script>
-    //  <!-- / Fathom -->
-
+    if ($page->template == 'map' || $page->template == 'shop') {
+	?>
+		<!-- 250104 switched to Maplibre -->
+		<script nonce="<?= $mu->nonce ?>" type="text/javascript" src="/site/assets/vendor/maplibre/maplibre-gl.js"></script>
+		<link href="/site/assets/vendor/maplibre/maplibre-gl.css" rel="stylesheet" />
+		
+	<?php
+	}
     ?>
 
 

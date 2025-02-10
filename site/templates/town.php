@@ -26,8 +26,8 @@ echo '</div>';
     $shops_in_county = $pages->find("addresses.town={$page},sort=title");
 
     // $shops_in_county->add($pages->find("addresses.town={$page->name}"));
-
-        echo shop_in_list($shops_in_county, 4 , 'town');
+	// should we cache these or will that just do what PageCache does anyway...
+    echo shop_in_list($shops_in_county, 4 , 'town');
     
     ?>
 </div>

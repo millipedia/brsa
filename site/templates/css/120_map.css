@@ -1,0 +1,36 @@
+.map{
+	height: 80vh;
+}
+
+/* pops up */
+
+.pu{
+	font-size: 14px;
+}
+
+.pu_title{
+	font-weight: var(--strong);
+}
+
+.pu_url a{
+	text-decoration: none;
+	color:var(--theme);
+}
+
+.pu_url a:hover{
+	text-decoration: underline;
+}
+
+.map_link{
+	font-size:13px;
+	text-decoration: none;
+	display: flex;
+	gap:4px;
+	align-items: center;
+}
+
+.map_link svg{
+	height:18px;
+	width: auto;
+}
+

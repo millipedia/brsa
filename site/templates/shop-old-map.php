@@ -257,42 +257,102 @@ namespace ProcessWire;
 
             }
      
-			$shop_locations=array();
+            // TODO  - this should show all the addresses field entries.
+
+            $locations=array();
+
+            if ($page->location) {
+                $locations[]=$page->location;
+            }
 
             if($page->addresses->count){
 
                 foreach($page->addresses as $address){
 
-					if ($address->location) {
+                    if($address->location){
+                        $locations[]=$address->location;
+                    }
 
-						$shop_location = array();
-						$shop_location['title'] = $page->title;
-
-						// must do a function somewhere (init) for this.
-						$location = explode(',', $address->location);
-						$lat = $location[0];
-						$lng = $location[1];
-
-						$shop_location['lat'] = $lat;
-						$shop_location['lng'] = $lng;
-
-						$shop_location['url'] = ''; // don't show the url link when we're already on the shop page.
-						$shop_location['town'] = $address->town->title;
-
-						$shop_locations[] = $shop_location;
-					}
-
-				}
-
+                }
             }
 
-            if (count($shop_locations)) {
+            if (count($locations)) {
             
                 echo '<div id="map" class="shop_map">... loading ... </div>';
 
-				include('includes/map_js.php');
+            ?>
+                <script nonce="<?= $nonce ?>">
+                    document.addEventListener('DOMContentLoaded', function() {
 
-				echo '<div class="map_link_container"><a class="map_link" href="/map/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="m16 24l-6.09-8.6A8.14 8.14 0 0 1 16 2a8.08 8.08 0 0 1 8 8.13a8.2 8.2 0 0 1-1.8 5.13Zm0-20a6.07 6.07 0 0 0-6 6.13a6.2 6.2 0 0 0 1.49 4L16 20.52L20.63 14A6.24 6.24 0 0 0 22 10.13A6.07 6.07 0 0 0 16 4"/><circle cx="16" cy="9" r="2" fill="currentColor"/><path fill="currentColor" d="M28 12h-2v2h2v14H4V14h2v-2H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V14a2 2 0 0 0-2-2"/></svg> View BRSA map</a></div>';
+                        // set up the map
+                        map = new L.Map('map');
+
+                        // create the tile layer with correct attribution
+                        var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+                        var osmAttrib = '© OpenStreetMap';
+                        var osm = new L.TileLayer(osmUrl, {
+                            minZoom: 8,
+                            maxZoom: 18,
+                            attribution: osmAttrib
+                        });
+
+                        // var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+                        //     attribution: 'Map tiles <a href="http://stamen.com">Stamen Design</a> &mdash; Data <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors',
+                        //     subdomains: 'abcd',
+                        //     minZoom: 4,
+                        //     maxZoom: 16,
+                        //     ext: 'png'
+                        // });
+
+                        map.attributionControl.setPrefix('');
+
+                        map.addLayer(osm);
+
+                        map.setView([<?=$locations[0]?>], 11);
+
+						var marker_layer = new L.featureGroup();
+
+                        <?php
+
+                        $tick=1;
+                        foreach($page->addresses as $address){
+
+                            if($address->location && $address->location!==''){
+
+                                echo 'var marker_' . $tick .' = L.marker([' . $address->location .']).setIcon(L.divIcon({className: \'brsa_map_pin\'})).addTo(marker_layer);' . PHP_EOL;
+
+
+
+                            $popup_content='<div class="text-centre">';
+                            $popup_content.='<div class="pu_title">' . $page->title .'</div>';
+                            
+                            if($address->town){
+                                $popup_content.='<div class="pu_town">' . $address->town->title . '</div>';
+                            }
+
+                            $popup_content.='</div>';
+
+
+                            echo ' marker_' .$tick .'.bindPopup(\''. $popup_content .'\');' . PHP_EOL;
+
+						}
+
+                            $tick ++;
+    
+                        }
+
+
+                           
+                        ?>
+							marker_layer.addTo(map);
+							map.fitBounds(marker_layer.getBounds());
+
+                       
+
+                    });
+                </script>
+
+            <?php
 
             }
 
