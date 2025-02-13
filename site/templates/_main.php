@@ -62,8 +62,6 @@ namespace ProcessWire;
 
         echo '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>';
 
-        echo ' <link rel="stylesheet" href="/site/assets/vendor/leaflet/leaflet.css" />';
-        echo '<script src="/site/assets/vendor/leaflet/leaflet.js?v=193"></script>';
     }
 
     if ($page->template == 'map' || $page->template == 'shop') {

@@ -5,19 +5,18 @@ namespace ProcessWire;
 // Keep the locations in cache cos they're expensive to build.
 
 // destroy the cache if were admin and have hit the big red button.
-if($input->get('rebuild') && $input->get('rebuild')==1 && $user->isLoggedIn()){
-
+if ($input->get('rebuild') && $input->get('rebuild') == 1 && $user->isLoggedIn()) {
 	$cache->delete('shop_locations');
 	$session->redirect($page->url);
 }
 
-$shop_locations = $cache->get('shop_locations', 2592000, function () {
+$shop_locations = $cache->get('shop_locations', 2592000, function () { // month long cache
 
 	// this is called if cache expired or does not exist,
 	// so generate a new cache value here and return it
 
 	$shops = wire('pages')->find("template=shop,limit=10000");
-	
+
 	$shop_locations = array();
 
 	foreach ($shops as $shop) {
@@ -59,13 +58,14 @@ $shop_locations = $cache->get('shop_locations', 2592000, function () {
 		<h1><?= $page->title ?></h1>
 
 		<div class="text-measure">
-			<p>We're working through adding location data for all of the shops. There's still a way to go, but here's <strong><?=count($shop_locations)?></strong> of them.</div>
+			<p>We're working through adding location data for all of the shops. There's still a way to go, but here's <strong><?= count($shop_locations) ?></strong> of them.
+		</div>
 
-			<?php
-				if($user->isLoggedIn()){
-					echo '<a class="butt" href="' . $page->url .'?rebuild=1">Rebuild marker cache</a>';
-				}
-			?>
+		<?php
+		if ($user->isLoggedIn()) {
+			echo '<a class="butt" href="' . $page->url . '?rebuild=1">Rebuild marker cache</a>';
+		}
+		?>
 
 
 		<div id="map" class="map"></div>
@@ -75,7 +75,7 @@ $shop_locations = $cache->get('shop_locations', 2592000, function () {
 		$lat = $location[0];
 		$lng = $location[1];
 
-		
+
 		include('includes/map_js.php');
 
 		?>

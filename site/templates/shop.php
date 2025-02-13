@@ -365,7 +365,7 @@ namespace ProcessWire;
 
 
                 // show images as a gallery
-                if (($page->images && $page->images->count()) || $page->featured_image) {
+                if (($page->images && $page->images->count()) || ($page->bag_images && $page->bag_images->count()) || $page->featured_image) {
                     include('includes/page_gallery.php');
                 }
 
