@@ -1,19 +1,15 @@
 /* home */
 
 .home_main{
-
     background: url('/site/assets/images/homepage_bg.svg') no-repeat;
-    background-size: 63px 63px;
+    background-size: 40vw;
     background-position: top right;
     background-color: white;
-
 }
 
 .home-h1{
     font-size: 3.125rem;
 }
-
-
 
 .home_main h1 {
 	font-size: clamp(1rem, 5vw, 4rem);
@@ -22,7 +18,6 @@
 	align-content: flex-end;
     padding-bottom: 1rem;
 }
-
 
 @media(min-width: 768px ){
 

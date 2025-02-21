@@ -6,3 +6,4 @@ site/modules/MillcoUtils
 site/modules/MillcoLocation
 .DS_Store
 site/config-Cloudways.php
+site/templates/dashboard_panel_fixins.php

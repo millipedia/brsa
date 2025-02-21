@@ -18,8 +18,8 @@ function search_results_list($title,$matches){
 			foreach($matches as $match){
 				$results_list_markup.= '<a class="search_result" href="' . $match->url . '">';
 				$results_list_markup.= '<div class="sr_title">' . $match->title . '</div>';
-				if($match->county){
-					$results_list_markup.= '<div class="sr_county">' . $match->county->title . '</div>';
+				if($counties=$match->get_counties()){
+					$results_list_markup.= '<div class="sr_county">' . $counties . '</div>';
 				}
 				$results_list_markup.= '</a>';
 

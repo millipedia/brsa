@@ -10,7 +10,6 @@
  $fixins=$pages->find("template=shop,addresses.town=''");
 
 ?>
-<p>oooh - done all the town eh... good for you.</p>
 <p>Next challenge is adding any shops that the All Good Records site has. I've scraped their list into a spreadsheet here: <a href="https://next.millipedia.net/s/YX4a57EqjGpfgXe">https://next.millipedia.net/s/YX4a57EqjGpfgXe</a> (let me know if that doesn't work for you and I'll move to a Google Doc or something).</p>
 
 <p>I might be able to do some limited importing of shops at some point, but you might as well get stuck in.</p>
@@ -41,12 +40,14 @@
 		// $result = $query->fetchAll();
 
 
-		//$fixins=$pages->find("template=shop,addresses.town='',need_more_info!=1,limit=20");
-		$fixins=$pages->find("template=shop,addresses.count<1,need_more_info!=1");
+		// //$fixins=$pages->find("template=shop,addresses.town='',need_more_info!=1,limit=20");
+	$fixins=$pages->find("template=53, !shop_address='', need_more_info=0, sort=title, include=unpublished");
 
 
-		echo '<p>Also. There are <strong>' . $fixins->count() . '</strong> shops that have something in the old address field but don\'t have new addresses. So they need to be addressed ...</p>';
+		 echo '<p>Getting there with the old addresses. These are shops that have something in the old address field but no addres... and are not published. Shall we take a look and see what we can do with them. Either publish them or stick them in the needs more info bucket... or just get rid of them for now.</p>';
 
+
+		// $fixins=$pages->find("template=shop,!shop_address='',need_more_info=0,limit=25");
         foreach($fixins as $fp){
 
            //upage=$pages->get($row['pages_id']);
