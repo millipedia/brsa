@@ -10,7 +10,7 @@
  $fixins=$pages->find("template=shop,addresses.town=''");
 
 ?>
-<p>Next challenge is adding any shops that the All Good Records site has. I've scraped their list into a spreadsheet here: <a href="https://next.millipedia.net/s/YX4a57EqjGpfgXe">https://next.millipedia.net/s/YX4a57EqjGpfgXe</a> (let me know if that doesn't work for you and I'll move to a Google Doc or something).</p>
+<p>Next challenge is adding any shops that the All Good Records site has.llipedia.net/s/YX4a57EqjGpfgXe</a></p>
 
 <p>I might be able to do some limited importing of shops at some point, but you might as well get stuck in.</p>
 
