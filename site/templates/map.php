@@ -59,7 +59,7 @@ $shop_locations = $cache->get('shop_locations', 2592000, function () { // month 
 
 		<div class="text-measure">
 			<p>We're working through adding location data for all of the shops. There's still a way to go, but here's <strong><?= count($shop_locations) ?></strong> of them.
-		</div>
+			</div>
 
 		<?php
 		if ($user->isLoggedIn()) {
@@ -67,7 +67,11 @@ $shop_locations = $cache->get('shop_locations', 2592000, function () { // month 
 		}
 		?>
 
-
+		<div class="map_typeahead">
+			<label for="address">Start typing to select a town :</label>
+			<input type="text" id="address" list="addressSuggestions" />
+			<datalist id="addressSuggestions"></datalist>
+		</div>
 		<div id="map" class="map"></div>
 		<?php
 

@@ -125,9 +125,20 @@ accent-color:var(--theme);
 /*=============================
   Base Styles
 =============================*/
-* {
+/* Box sizing rules */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
 html,
 body {
   margin: 0;

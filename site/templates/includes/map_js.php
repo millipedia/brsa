@@ -2,29 +2,29 @@
 
 $features = array();
 
-		foreach ($shop_locations as $shop_location) {
+foreach ($shop_locations as $shop_location) {
 
-			$feature = array();
-			$feature['type'] = 'Feature';
+	$feature = array();
+	$feature['type'] = 'Feature';
 
-			$properties = array();
-			$properties['title'] = $shop_location['title'];
-			$properties['url'] = $shop_location['url'];
-			$properties['town'] = $shop_location['town'];
+	$properties = array();
+	$properties['title'] = $shop_location['title'];
+	$properties['url'] = $shop_location['url'];
+	$properties['town'] = $shop_location['town'];
 
-			$feature['properties'] = $properties;
-			$feature['geometry'] = ['type' => 'Point', 'coordinates' => [$shop_location['lng'], $shop_location['lat']]];
+	$feature['properties'] = $properties;
+	$feature['geometry'] = ['type' => 'Point', 'coordinates' => [$shop_location['lng'], $shop_location['lat']]];
 
-			$features[] = $feature;
-		}
+	$features[] = $feature;
+}
 
 
-		$collection = array(
-			'type' => 'FeatureCollection',
-			'features' => $features,
-		);
+$collection = array(
+	'type' => 'FeatureCollection',
+	'features' => $features,
+);
 
-		$shop_json = json_encode($collection);
+$shop_json = json_encode($collection);
 
 
 ?>
@@ -33,8 +33,8 @@ $features = array();
 	var scUser = {}; //container object for variables we use in a few places
 
 	const maxbounds = [
-		[36.48762981596457, -37.628866380125615], // Southwest coordinates
-		[63.760676210065974, 10.623081895396105] // Northeast coordinates
+		[-20, 42], // Southwest coordinates
+		[10, 64] // Northeast coordinates
 	];
 
 	var map = new maplibregl.Map({
@@ -42,7 +42,8 @@ $features = array();
 		style: 'https://tiles.stadiamaps.com/styles/osm_bright.json', // Style URL; see our documentation for more options/ Style URL; see our documentation for more options
 		attributionControl: false,
 		center: [<?= $lng ?>, <?= $lat ?>], // Initial focus coordinate
-		zoom: 5
+		zoom: 6,
+		maxBounds: maxbounds
 	});
 
 	map.addControl(new maplibregl.AttributionControl({
@@ -51,14 +52,35 @@ $features = array();
 	}));
 
 	// Simulate click on the attribution icon to keep it closed on launch.
-	
+
 	var ac = document.querySelector(".maplibregl-ctrl-attrib-button");
-	const aclickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+	const aclickEvent = new MouseEvent('click', {
+		bubbles: true,
+		cancelable: true,
+		view: window
+	});
 	ac.dispatchEvent(aclickEvent);
 	console.log(ac);
 
-	// Add zoom and rotation controls to the map.
-	map.addControl(new maplibregl.NavigationControl());
+
+
+
+
+
+	// var map_search = new maplibreSearchBox.MapLibreSearchControl({
+	//     useMapFocusPoint: true,
+	// 	layers: ['locality'],
+	//     onResultSelected: feature => {
+	//       // You can add code here to take some action when a result is selected.
+	//       console.log(feature.geometry.coordinates);
+	//     },
+	//     // You can also use our EU endpoint to keep traffic within the EU using the basePath option:
+	//     // baseUrl: "https://api-eu.stadiamaps.com",
+	//   });
+	//   map.addControl(map_search, "top-left");
+
+	// // Add zoom and rotation controls to the map.
+	// map.addControl(new maplibregl.NavigationControl());
 
 	const shop_json = <?= $shop_json ?>;
 
@@ -164,7 +186,7 @@ $features = array();
 			let pu_content = '<div class="pu">';
 			pu_content += '<div class=pu_title>' + title + '</div>';
 			pu_content += '<div class=pu_town>' + town + '</div>';
-			if(shop_url!==''){
+			if (shop_url !== '') {
 				pu_content += '<div class=pu_url><a href="' + shop_url + '">View shop details</a></div>';
 			}
 			pu_content += '</div>';
@@ -190,8 +212,105 @@ $features = array();
 
 		map.fitBounds(bounds, {
 			padding: 20,
-	        maxZoom: 10 // Set the maximum zoom level
-    	});
+			maxZoom: 10 // Set the maximum zoom level
+		});
 
 	});
+</script>
+
+<script nonce="<?= $mu->nonce ?>">
+	/**
+	 * Typeahead for looking up towns so we can zoom to them. 
+	 */
+
+
+	// Initialize the Stadia Maps API using the global stadiaMapsApi object
+	const smaconfig = new stadiaMapsApi.Configuration();
+	const api = new stadiaMapsApi.GeocodingApi(smaconfig);
+
+	// Get the input and datalist elements
+	const addressInput = document.getElementById('address');
+	const addressSuggestions = document.getElementById('addressSuggestions');
+
+
+	// we set maxbounds previously as the er maxbounds for the map.
+
+	const bounds = {
+		southwest: {
+			lat: maxbounds[0][1],
+			lng: maxbounds[0][0]
+		},
+		northeast: {
+			lat: maxbounds[1][1],
+			lng: maxbounds[1][0]
+		}
+	};
+
+
+	// Function to update the datalist with suggestions
+	async function updateSuggestions(inputValue) {
+		if (inputValue.length < 3) {
+			// Clear suggestions if input is less than 3 characters
+			addressSuggestions.innerHTML = '';
+			return;
+		}
+
+		try {
+
+			const res = await api.autocomplete({
+				text: inputValue,
+				bounds: bounds,
+				layers: ['coarse']
+			});
+
+			const options = res.features.map(feature => {
+
+				if (feature.properties.country_code == "GB") {
+					let locstring = feature.properties.name + ' - ' + feature.properties.county;
+					return `<option value="${locstring}" data-coords="${feature.geometry.coordinates}">${locstring}</option>`;
+				} else {
+					return;
+				}
+
+
+			}).join('');
+
+			addressSuggestions.innerHTML = options;
+
+		} catch (error) {
+
+			console.error('Error fetching suggestions:', error);
+		}
+	}
+
+	// Add an input event listener to the address input
+	addressInput.addEventListener('input', () => {
+
+		// Get the current value of the address input
+		const inputValue = addressInput.value;
+
+		// See if it matches an option.
+		const selectedOption = Array.from(addressSuggestions.children).find(option => option.value === inputValue);
+
+		// if it does match (probably becasue we selected it)
+		// then grab the coordinates, cape and fly!
+		if (selectedOption) {
+			const coords = selectedOption.getAttribute('data-coords');
+			const lnglat = coords.split(",");
+			console.log('Selected coordinates:', coords);
+
+			map.flyTo({
+				center: lnglat,
+				zoom: 12
+			});
+
+		}else{ // get more suggestions.
+
+			updateSuggestions(addressInput.value);
+		}
+
+
+
+	});
+
 </script>

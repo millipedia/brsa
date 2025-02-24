@@ -34,3 +34,23 @@
 	width: auto;
 }
 
+#map *{
+	box-sizing: initial !important;
+}
+
+.map_typeahead {
+    padding: 0.5rem;
+    background-color: var(--grey-very-light);
+    display: flex;
+	flex-wrap: wrap;
+    align-items: center;
+    font-size: 14px;
+    gap: 8px;
+}
+
+.map_typeahead input {
+	border: 2px solid var(--theme);
+	border-radius: 16px;
+	padding: 4px 8px;
+	min-width: 160px;
+}

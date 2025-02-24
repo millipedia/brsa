@@ -67,8 +67,13 @@ namespace ProcessWire;
     if ($page->template == 'map' || $page->template == 'shop') {
 	?>
 		<!-- 250104 switched to Maplibre -->
-		<script nonce="<?= $mu->nonce ?>" type="text/javascript" src="/site/assets/vendor/maplibre/maplibre-gl.js"></script>
+		<script nonce="<?= $mu->nonce ?>" src="/site/assets/vendor/maplibre/maplibre-gl.js"></script>
 		<link href="/site/assets/vendor/maplibre/maplibre-gl.css" rel="stylesheet" />
+
+		<!-- <script src="/site/assets/vendor/maplibre/maplibre-search-box.umd.js"></script>
+    	<link href="/site/assets/vendor/maplibre/maplibre-search-box-style.css" rel="stylesheet"/> -->
+		<script nonce="<?= $mu->nonce ?>" src="/site/assets/vendor/stadiamaps-api.umd.js"></script>
+
 		
 	<?php
 	}

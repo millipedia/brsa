@@ -212,22 +212,7 @@ namespace ProcessWire;
                 $address_markup.= '</div>'; 
 
                 }
-            }else if ($page->shop_address || $page->shop_postcode) {
-
-                $address_count++;
-
-                $address_markup.= '<div class="shop_address">';
-
-                    $address_markup.= nl2br($page->shop_address);
-
-                if ($page->shop_postcode) {
-                    $address_markup.= ' <span class="shop_postcode">s' . $page->shop_postcode . '</span>';
-                }
-
-                $address_markup.= '</div>';
             }
-
-
 
             if($address_count > 1){
                 echo '<h3>Locations</h3>';
