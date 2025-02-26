@@ -204,20 +204,70 @@ $shop_json = json_encode($collection);
 			map.getCanvas().style.cursor = '';
 		});
 
-		// get our bounds.
-		var bounds = new maplibregl.LngLatBounds();
-		shop_json.features.forEach(function(feature) {
-			bounds.extend(feature.geometry.coordinates);
-		});
 
-		map.fitBounds(bounds, {
-			padding: 20,
-			maxZoom: 10 // Set the maximum zoom level
-		});
+		//if we have a latlng get parameter then zoom mostly to that
+		const queryString = window.location.search;
+
+		var map_focus;
+		if (queryString) {
+
+			const urlParams = new URLSearchParams(queryString);
+
+			if (urlParams.size) {
+
+				let map_focus_point_string = urlParams.get('lnglat');
+
+				if (map_focus_point_string) {
+
+					let map_focus_point = map_focus_point_string.split(',');
+
+					try {
+						map_focus = new maplibregl.LngLat(parseFloat(map_focus_point[0]), parseFloat(map_focus_point[1]));
+					} catch (err) {
+						console.log('invalid laltntn');
+					}
+
+				}
+
+
+			}
+		}
+
+
+
+		if (map_focus !== undefined) {
+			console.log("got a point");
+			map.flyTo({
+				center: map_focus,
+				zoom: 13
+			});
+		} else { // fit map to our bounds.
+			
+
+			// get our bounds.
+			var bounds = new maplibregl.LngLatBounds();
+			shop_json.features.forEach(function(feature) {
+				bounds.extend(feature.geometry.coordinates);
+			});
+
+			map.fitBounds(bounds, {
+				padding: 20,
+				maxZoom: 10 // Set the maximum zoom level
+			});
+
+		}
+
+
+		
 
 	});
 </script>
 
+<?php 
+
+// if this is the main map page then add the script for our town lookup.
+if($page->template=='map'){
+	?>
 <script nonce="<?= $mu->nonce ?>">
 	/**
 	 * Typeahead for looking up towns so we can zoom to them. 
@@ -234,7 +284,6 @@ $shop_json = json_encode($collection);
 
 
 	// we set maxbounds previously as the er maxbounds for the map.
-
 	const bounds = {
 		southwest: {
 			lat: maxbounds[0][1],
@@ -304,7 +353,7 @@ $shop_json = json_encode($collection);
 				zoom: 12
 			});
 
-		}else{ // get more suggestions.
+		} else { // get more suggestions.
 
 			updateSuggestions(addressInput.value);
 		}
@@ -312,5 +361,8 @@ $shop_json = json_encode($collection);
 
 
 	});
-
 </script>
+
+<?php
+}// close map page conditional
+?>
