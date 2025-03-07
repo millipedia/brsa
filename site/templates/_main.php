@@ -13,7 +13,11 @@ namespace ProcessWire;
 
     <?php
 
-    $millco_title = $page->title;
+   	 $millco_title = $page->title;
+
+	 if($page->template=='home'){
+		$millco_title='BRSA';
+	 }
 
     ?>
 

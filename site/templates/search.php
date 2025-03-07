@@ -18,9 +18,13 @@ function search_results_list($title,$matches){
 			foreach($matches as $match){
 				$results_list_markup.= '<a class="search_result" href="' . $match->url . '">';
 				$results_list_markup.= '<div class="sr_title">' . $match->title . '</div>';
-				if($counties=$match->get_counties()){
-					$results_list_markup.= '<div class="sr_county">' . $counties . '</div>';
+
+				if($match->template=='shop'){
+					if($counties=$match->get_counties()){
+						$results_list_markup.= '<div class="sr_county">' . $counties . '</div>';
+					}
 				}
+
 				$results_list_markup.= '</a>';
 
 			}
