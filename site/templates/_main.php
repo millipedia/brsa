@@ -68,7 +68,7 @@ namespace ProcessWire;
 
     }
 
-    if ($page->template == 'map' || $page->template == 'shop') {
+    if ($page->template == 'map' || $page->template == 'shop' || $page->template == 'mapcha') {
 	?>
 		<!-- 250104 switched to Maplibre -->
 		<script nonce="<?= $mu->nonce ?>" src="/site/assets/vendor/maplibre/maplibre-gl.js"></script>
