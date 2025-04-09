@@ -22,7 +22,7 @@ namespace ProcessWire;
 
     <div class="homepage_search">
         <form action="/search/" id="search-form" class="search-form">
-            <label for="search-box" class="search_label">Search</label>
+            <label for="search-box" class="search_label sr-only">Search</label>
             <div class="search_box_layout">
             <input id="search-box" class="search-box" 
 type="text"

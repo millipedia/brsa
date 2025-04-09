@@ -57,11 +57,8 @@ if($site_url_canonical==''){
     <meta property="og:type" content="website">
     <?php
 
-    $ogimage='/site/assets/images/socmed_landscape.png';// our default OG image 
-    // on EB that's the same as twitter for some reason.
-
-    // OG image
-
+    $ogimage='/site/assets/images/socmed_landscape.png?v=2';// our default OG image 
+	
     $image = $page->featured_image;
 
     if($image){
@@ -85,7 +82,7 @@ if($site_url_canonical==''){
     <?php
 
     $twimage='/site/assets/images/socmed_square.png';// our default card image
-
+	
     // do we have a featured image?
     $image = $page->featured_image;
 

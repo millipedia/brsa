@@ -85,7 +85,7 @@ if($input->get("ana") && $input->get("ana")> 1 ){
 	$shop_page = $pages->get($erp);
 	if ($shop_page && $shop_page->id) {
 		
-		echo '<a href="' . $shop_page->url . '">' . $shop_page->title . '</a> ';
+		echo '<a href="' . $shop_page->url . '" target="_blank">' . $shop_page->title . '</a> ';
 
 	} else {
 		echo 'oooh ... dunno what shop this belongs to, thats not good.';
@@ -111,7 +111,7 @@ if($input->get("ana") && $input->get("ana")> 1 ){
 </form>
 
 
-<a class="butt" href="<?=$shop_page->url?>">Edit shop</a>
+<a class="butt" href="<?=$shop_page->url?>" target="_blank">Edit shop</a>
 
 
 <a class="butt" href="<?=$page->url?>">Next!</a>

@@ -137,6 +137,9 @@ html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+
+  scrollbar-color: var(--theme) var(--dark); /* Two valid colours.
+  The first applies to the thumb of the scrollbar, the second to the track. */
 }
 
 html,
@@ -153,7 +156,8 @@ body {
   font-family: var(--font-sans);
   scroll-behavior: smooth;
   position:relative;
-}
+
+  }
 
 /*=============================
   Link

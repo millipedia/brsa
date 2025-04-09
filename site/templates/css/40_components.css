@@ -112,19 +112,9 @@
   }
 
   .homepage_search .search-form{
-    max-width: 1200px;
+    max-width: 1300px;
   }
 
-}
-
-
-.search_label{
-  display: none;
-  align-content: center;
-  font-weight:var(--strong);
-  padding-right: 1rem;
-  color:black;
-  background-color: white;
 }
 
 #search-box{
