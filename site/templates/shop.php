@@ -189,7 +189,7 @@ namespace ProcessWire;
 
                     $address_count++;
 
-                    $address_markup.= '<div class="shop_address">';
+                    $address_markup.= '<div class="shop_address ' . ($address->closed ? 'shop_address_closed' : '') . '">';
 
                     $address_markup.= nl2br($address->shop_address);
 
@@ -206,6 +206,10 @@ namespace ProcessWire;
                     if ($address->county) {
                         $address_markup.= ' <a href="' . $address->county->url . '">' . $address->county->title . '</a>';
                     }
+
+					if($address->closed){
+						$address_markup.= ' <span class="shop_closed">(closed ' . $address->closed . ')</span>';
+					}
 
 
 
@@ -263,6 +267,12 @@ namespace ProcessWire;
 
 						$shop_location['url'] = ''; // don't show the url link when we're already on the shop page.
 						$shop_location['town'] = $address->town->title;
+
+						if($address->closed){
+							$shop_location['closed'] = $address->closed;
+						}else{
+							$shop_location['closed'] = 0;
+						}
 
 						$shop_locations[] = $shop_location;
 					}

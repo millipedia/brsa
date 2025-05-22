@@ -289,7 +289,7 @@ function cover($shop, $cover_tick = 0, $cover_type = "all", $heading = '')
     } else {
 
         $cover .= '<figure class="cover_image_figure">';
-        $cover .= '<img class="cover_image" src="/site/assets/images/cover_bg.svg" alt="" width="200px" height="200px">';
+        $cover .= '<img class="cover_image" src="/site/assets/images/cover_bg.svg?v=2" alt="" width="200px" height="200px">';
         $cover .= '</picture>';
         $cover .= '</figure>';
     }

@@ -386,3 +386,19 @@ padding-right: 3px;
 lite-youtube{
   margin:1rem 0;
 }
+
+
+/** Audio tag */
+
+audio{
+  width:100%;
+  min-height: 32px;
+}
+
+
+
+
+
+
+
+

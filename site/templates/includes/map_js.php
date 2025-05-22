@@ -11,7 +11,11 @@ foreach ($shop_locations as $shop_location) {
 	$properties['title'] = $shop_location['title'];
 	$properties['url'] = $shop_location['url'];
 	$properties['town'] = $shop_location['town'];
-
+	if (isset($shop_location['closed'])) {
+		$properties['closed'] = $shop_location['closed'];
+	}else{
+		$properties['closed'] = 0;
+	}
 	$feature['properties'] = $properties;
 	$feature['geometry'] = ['type' => 'Point', 'coordinates' => [$shop_location['lng'], $shop_location['lat']]];
 
@@ -60,11 +64,7 @@ $shop_json = json_encode($collection);
 		view: window
 	});
 	ac.dispatchEvent(aclickEvent);
-	console.log(ac);
-
-
-
-
+	// console.log(ac);
 
 
 	// var map_search = new maplibreSearchBox.MapLibreSearchControl({
@@ -175,7 +175,7 @@ $shop_json = json_encode($collection);
 			const title = e.features[0].properties.title;
 			const shop_url = e.features[0].properties.url;
 			const town = e.features[0].properties.town;
-
+			const shop_closed = e.features[0].properties.closed;
 			// Ensure that if the map is zoomed out such that
 			// multiple copies of the feature are visible, the
 			// popup appears over the copy being pointed to.
@@ -188,6 +188,9 @@ $shop_json = json_encode($collection);
 			pu_content += '<div class=pu_town>' + town + '</div>';
 			if (shop_url !== '') {
 				pu_content += '<div class=pu_url><a href="' + shop_url + '">View shop details</a></div>';
+			}
+			if (shop_closed > 0) {
+				pu_content += '<div class=pu_closed>Closed ' + shop_closed + '</div>';
 			}
 			pu_content += '</div>';
 

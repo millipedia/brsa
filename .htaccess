@@ -6,6 +6,11 @@
     Header set Connection keep-alive
 </IfModule>
 
+RewriteEngine On
+
+RewriteCond %{HTTP_USER_AGENT} (MJ12bot|Baiduspider|BLEXBot|AhrefsBot|SemrushBot) [NC]
+RewriteRule .* - [R=403,L]
+
 # Output WEBP image URLs from ProcessWire, but redirect them to the
 # JPEG or PNG when the browser does not support WEBP.
 
@@ -372,8 +377,8 @@ DirectoryIndex index.php index.html index.htm
   
   # 13B. Redirect www.domain.com to domain.com (do not combine with 13A):
   # -----------------------------------------------------------------------------------------------
-  # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-  # RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
 
 
   # ----------------------------------------------------------------------------------------------- 

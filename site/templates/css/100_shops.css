@@ -22,6 +22,10 @@
 	margin-bottom: 0.5rem;
 }
 
+.shop_address_closed {
+	text-decoration: line-through;
+}
+
 .history_grid {
 	display: grid;
 	grid-template-columns: auto 1fr;
